@@ -21,19 +21,29 @@ def naproxy():
     global urls
     global app_stop
     urlno = 0
-    lc = 'ru-RU'
-    timezone = 'Europe/Moscow'
-    s1 = '.select > div:nth-child(2) > ul:nth-child(1) > li:nth-child(2)'
+    
     print("start naproxy thread!")
-    print(lc)
-    print(timezone)
+    
     thread_stop = 0 # 判断是否终止线程
     error = 0
     count = 0
+    country = 0 # 0为俄罗斯 1为德国
     while thread_stop == 0 and app_stop == 0 and error < 10:
         try:
             with sync_playwright() as p:
-                url = urllist[urlno]               
+                url = urllist[urlno]   
+                if country == 0:
+                    lc = 'ru-RU'
+                    timezone = 'Europe/Moscow'
+                    s1 = '.select > div:nth-child(2) > ul:nth-child(1) > li:nth-child(2)'
+                else:
+                    lc = 'de-DE'
+                    timezone = 'Europe/Berlin'
+                    s1 = '.select > div:nth-child(2) > ul:nth-child(1) > li:nth-child(12)'                
+               
+                print(lc)
+                print(timezone)
+                print(url)
                 chooseChrome = random.randint(0, 199)
                 print('第' + str(chooseChrome) + '个 chrome')
                 ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+ chromelist[chooseChrome] +' Safari/537.36'
@@ -65,6 +75,10 @@ def naproxy():
                     urlno = urlno + 1
                 else:
                     urlno = 0
+                if country == 0:
+                    country = 1
+                else:
+                    country = 0
         except:
             error = error + 1
             print("naproxy have errors")
@@ -77,19 +91,29 @@ def lumiproxy():
     global urls
     global app_stop
     urlno = 0
-    lc = 'ru-RU'
-    timezone = 'Europe/Moscow'
-    s2 = 'li.el-select-dropdown__item:nth-child(2)'
+    
     print("start lumiproxy thread!")
-    print(lc)
-    print(timezone)
+
     thread_stop = 0 # 判断是否终止线程
     error = 0
     count = 0
+    country = 0 # 0为俄罗斯 1为德国
     while thread_stop == 0 and app_stop == 0 and error < 10:
         try:
             with sync_playwright() as p:
                 url = urllist[urlno]
+                if country == 0:
+                    lc = 'ru-RU'
+                    timezone = 'Europe/Moscow'
+                    s2 = 'li.el-select-dropdown__item:nth-child(2)'
+                else:
+                    lc = 'de-DE'
+                    timezone = 'Europe/Berlin'
+                    s2 = 'li.el-select-dropdown__item:nth-child(12)'               
+               
+                print(lc)
+                print(timezone)
+                print(url)
                 chooseChrome = random.randint(0, 199)
                 print('第' + str(chooseChrome) + '个 chrome')
                 ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+ chromelist[chooseChrome] +' Safari/537.36'
@@ -121,6 +145,10 @@ def lumiproxy():
                     urlno = urlno + 1
                 else:
                     urlno = 0
+                if country == 0:
+                    country = 1
+                else:
+                    country = 0
         except:
             error = error + 1
             print("lumiproxy have errors")
@@ -133,19 +161,29 @@ def p911():
     global urls
     global app_stop
     urlno = 0
-    lc = 'ru-RU'
-    timezone = 'Europe/Moscow'
-    s5 = '.selectList > li:nth-child(2)'
+   
     print("start 911proxy thread!")
-    print(lc)
-    print(timezone)
+
     thread_stop = 0 # 判断是否终止线程
     error = 0
     count = 0
+    country = 0 # 0为俄罗斯 1为德国
     while thread_stop == 0 and app_stop == 0 and error < 10:
         try:
             with sync_playwright() as p:
                 url = urllist[urlno]
+                if country == 0:
+                    lc = 'ru-RU'
+                    timezone = 'Europe/Moscow'
+                    s5 = '.selectList > li:nth-child(2)'
+                else:
+                    lc = 'de-DE'
+                    timezone = 'Europe/Berlin'
+                    s5 = '.selectList > li:nth-child(12)'               
+               
+                print(lc)
+                print(timezone)
+                print(url)
                 chooseChrome = random.randint(0, 199)
                 print('第' + str(chooseChrome) + '个 chrome')
                 ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+ chromelist[chooseChrome] +' Safari/537.36'
@@ -181,6 +219,10 @@ def p911():
                     urlno = urlno + 1
                 else:
                     urlno = 0
+                if country == 0:
+                    country = 1
+                else:
+                    country = 0
         except:
             error = error + 1
             print("911proxy have errors")
@@ -198,11 +240,12 @@ def plite():
     global end_time
     run_time = end_time - start_time
     count = 0
+    countrys = [0, 2] # 0为俄罗斯 2为德国
     while run_time < 10800:   # 运行时间少于 3 小时 就是 3x60x60=10800 秒
         try:
             with sync_playwright() as p:
                 url = urllist[urlno]
-                country = random.randint(1, 3)
+                country = random.choice(countrys)
                 if country == 0: #俄罗斯 Russia
                     lc = 'ru-RU'
                     timezone = 'Europe/Moscow'
@@ -242,6 +285,7 @@ def plite():
 
                 print(lc)
                 print(timezone)
+                print(url)
                 chooseChrome = random.randint(0, 199)
                 print('第' + str(chooseChrome) + '个 chrome')
                 ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+ chromelist[chooseChrome] +' Safari/537.36'
@@ -284,21 +328,229 @@ def plite():
             print("proxylite have errors")
     app_stop = 1            
     print("stop proxylite thread!")
+
+
+
+def proxycc():
+    global chromelist
+    global urllist
+    global urls
+    global app_stop
+    urlno = 0
     
+    print("start proxycc thread!")
+    
+    thread_stop = 0 # 判断是否终止线程
+    error = 0
+    count = 0
+    countrys = [0, 2] # 0为俄罗斯 2为德国
+    while thread_stop == 0 and app_stop == 0 and error < 10:
+        try:
+            with sync_playwright() as p:
+                url = urllist[urlno]
+                country = random.choice(countrys)
+                if countrylist[count] == 0: #俄罗斯 Russia
+                    lc = 'ru-RU'
+                    timezone = 'Europe/Moscow'
+                    s3 = 'Russia'
+                elif countrylist[count] == 1:  #乌克兰 Ukraine
+                    lc = 'uk-UA'
+                    timezone = 'Europe/Kyiv'
+                    s3 = 'Ukraine'
+                elif countrylist[count] == 2:  #德国 Germany
+                    lc = 'de-DE'
+                    timezone = 'Europe/Berlin'
+                    s3 = 'Germany'
+                elif countrylist[count] == 3:  #美国 USA
+                    lc = 'en-US'
+                    timezone = 'America/Chicago'
+                    s3 = 'United States'
+                elif countrylist[count] == 4:  #白俄罗斯 Belarus 
+                    lc = 'be-BY'
+                    timezone = 'Europe/Minsk'
+                    s3 = 'Belarus'
+                elif countrylist[count] == 5:  #哈萨克斯坦 Kazakhstan
+                    lc = 'kk-KZ'
+                    timezone = 'Asia/Almaty'
+                    s3 = 'Kazakhstan'
+                elif countrylist[count] == 6:  #乌兹别克斯坦 Uzbekistan
+                    lc = 'uz-UZ'
+                    timezone = 'Asia/Tashkent'
+                    s3 = 'Uzbekistan'
+                elif countrylist[count] == 7:  #保加利亚 Bulgaria
+                    lc = 'bg-BG'
+                    timezone = 'Europe/Sofia'
+                    s3 = 'Bulgaria'
+                else:   #尼日利亚 Nigeria
+                    lc = 'en-NG'
+                    timezone = 'Africa/Lagos'
+                    s3 = 'Nigeria'
+
+                print(lc)
+                print(timezone)
+                print(url)
+                chooseChrome = random.randint(0, 199)
+                print('第' + str(chooseChrome) + '个 chrome')
+                ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+ chromelist[chooseChrome] +' Safari/537.36'
+
+                browser = p.chromium.launch_persistent_context(
+                user_data_dir="./pcc",
+                channel="chrome",
+                headless=False,
+                no_viewport=True,
+                locale=lc,
+                timezone_id=timezone,
+                user_agent=ua
+                )
+                page = browser.new_page()
+
+                page.goto('https://proxy.cc/croxyproxy/', wait_until='domcontentloaded')
+                try:
+                    element = page.wait_for_selector('.close')
+                    element.click()
+                except:
+                    print("have errors")
+                page.locator('.search-input').click()
+                page.wait_for_timeout(1000)
+                page.get_by_title(s3).click()
+                page.locator('.input > input:nth-child(1)').fill(url)
+                page.locator('.go').click()
+                page.wait_for_timeout(30000)
+                browser.close()
+                print("proxycc count :" + str(count))
+                count = count + 1
+                error = 0
+                if urlno < urls:
+                    urlno = urlno + 1
+                else:
+                    urlno = 0
+
+        except:
+            error = error + 1
+            print("proxycc have errors")
+                
+    print("stop proxycc thread!")
+
+
+
+def omegaproxy():
+    global chromelist
+    global urllist
+    global urls
+    global app_stop
+    urlno = 0
+    
+    print("start omegaproxy thread!")
+    
+    thread_stop = 0 # 判断是否终止线程
+    error = 0
+    count = 0
+    countrys = [0, 2] # 0为俄罗斯 2为德国
+    while thread_stop == 0 and app_stop == 0 and error < 10:
+        try:
+            with sync_playwright() as p:
+                url = urllist[urlno]
+                country = random.choice(countrys)
+                if countrylist[count] == 0: #俄罗斯 Russia
+                    lc = 'ru-RU'
+                    timezone = 'Europe/Moscow'
+                    s6 = 'li.el-select-dropdown__item:nth-child(2)'
+                elif countrylist[count] == 1:  #乌克兰 Ukraine
+                    lc = 'uk-UA'
+                    timezone = 'Europe/Kyiv'
+                    s6 = 'li.el-select-dropdown__item:nth-child(19)'
+                elif countrylist[count] == 2:  #德国 Germany
+                    lc = 'de-DE'
+                    timezone = 'Europe/Berlin'
+                    s6 = 'li.el-select-dropdown__item:nth-child(12)'
+                elif countrylist[count] == 3:  #美国 USA
+                    lc = 'en-US'
+                    timezone = 'America/Chicago'
+                    s6 = 'li.el-select-dropdown__item:nth-child(1)'
+                elif countrylist[count] == 4:  #白俄罗斯 Belarus 
+                    lc = 'be-BY'
+                    timezone = 'Europe/Minsk'
+                    s6 = 'li.el-select-dropdown__item:nth-child(55)'
+                elif countrylist[count] == 5:  #哈萨克斯坦 Kazakhstan
+                    lc = 'kk-KZ'
+                    timezone = 'Asia/Almaty'
+                    s6 = 'li.el-select-dropdown__item:nth-child(30)'
+                elif countrylist[count] == 6:  #乌兹别克斯坦 Uzbekistan
+                    lc = 'uz-UZ'
+                    timezone = 'Asia/Tashkent'
+                    s6 = 'li.el-select-dropdown__item:nth-child(37)'
+                elif countrylist[count] == 7:  #保加利亚 Bulgaria
+                    lc = 'bg-BG'
+                    timezone = 'Europe/Sofia'
+                    s6 = 'li.el-select-dropdown__item:nth-child(84)'
+                else:   #尼日利亚 Nigeria
+                    lc = 'en-NG'
+                    timezone = 'Africa/Lagos'
+                    s6 = 'li.el-select-dropdown__item:nth-child(17)'
+
+                print(lc)
+                print(timezone)
+                print(url)
+                chooseChrome = random.randint(0, 199)
+                print('第' + str(chooseChrome) + '个 chrome')
+                ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+ chromelist[chooseChrome] +' Safari/537.36'
+
+                browser = p.chromium.launch_persistent_context(
+                user_data_dir="./omega",
+                channel="chrome",
+                headless=False,
+                no_viewport=True,
+                locale=lc,
+                timezone_id=timezone,
+                user_agent=ua
+                )
+                page = browser.new_page()
+
+                page.goto('https://www.omegaproxy.com/croxyproxy/', wait_until='domcontentloaded')
+                element = page.wait_for_selector('div.el-input:nth-child(1) > input:nth-child(1)')
+                element.click()
+                page.wait_for_timeout(1000)
+                page.locator(s6).click()
+                page.locator('div.el-input:nth-child(2) > input:nth-child(1)').fill(url)
+                page.locator('a.btn').click()
+                page.wait_for_timeout(30000)
+                browser.close()
+                print("omegaproxy count :" + str(count))
+                count = count + 1
+                error = 0
+                if urlno < urls:
+                    urlno = urlno + 1
+                else:
+                    urlno = 0
+
+        except:
+            error = error + 1
+            print("omegaproxy have errors")
+                
+    print("stop omegaproxy thread!")
+
+
+   
 t1 = threading.Thread(target=naproxy)
 t2 = threading.Thread(target=lumiproxy)
 t5 = threading.Thread(target=p911)
 t4 = threading.Thread(target=plite)
+t3 = threading.Thread(target=proxycc)
+t6 = threading.Thread(target=omegaproxy)
 
 t1.start()
 t2.start()
 t5.start()
 t4.start()
+t3.start()
+t6.start()
 
 t1.join()
 t2.join()
 t5.join()
 t4.join()
+t3.join()
+t6.join()
 
 print ("退出主线程")
 print('app stop time:')
