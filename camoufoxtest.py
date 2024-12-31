@@ -51,7 +51,7 @@ You can view the session live at {session.session_viewer_url}
 
         # Example script - Navigate to Hacker News and extract the top 5 stories
         print("Navigating to httpbin...")
-        page.goto("https://www.yalala.com/", wait_until="networkidle")
+        page.goto("https://www.ip77.net/")
         page.wait_for_timeout(30000)
         print(page.content())
 
