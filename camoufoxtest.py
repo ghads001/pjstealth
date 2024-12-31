@@ -26,7 +26,7 @@ def main():
             # solve_captcha=True,          # Enable automatic CAPTCHA solving
             # session_timeout=1800000,     # Session timeout in ms (default: 15 mins, max: 60 mins)
             # === Browser Configuration ===
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.0.0'     # Set a custom User-Agent
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'     # Set a custom User-Agent
         )
 
         print(f"""Session created successfully with Session ID: {session.id}.
@@ -51,8 +51,8 @@ You can view the session live at {session.session_viewer_url}
 
         # Example script - Navigate to Hacker News and extract the top 5 stories
         print("Navigating to httpbin...")
-        page.goto("https://httpbin.co/anything", wait_until="networkidle")
-
+        page.goto("https://www.yalala.com/", wait_until="networkidle")
+        page.wait_for_timeout(30000)
         print(page.content())
 
     except Exception as e:
