@@ -12,9 +12,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-    - name: Install patchright
-      run: pip install patchright
-    - name: Install chromium
-      run: patchright install chromium
+        pip install -r requirements.txt
     - name: Run your tests
       run: xvfb-run python camoufoxtest.py
