@@ -21,12 +21,12 @@ def main():
         # Create a new Steel session with all available options
         session = client.sessions.create(
             # === Basic Options ===
-            # use_proxy=True,              # Use Steel's proxy network (residential IPs)
+            use_proxy=True,              # Use Steel's proxy network (residential IPs)
             # proxy_url='http://...',      # Use your own proxy (format: protocol://username:password@host:port)
             # solve_captcha=True,          # Enable automatic CAPTCHA solving
             # session_timeout=1800000,     # Session timeout in ms (default: 15 mins, max: 60 mins)
             # === Browser Configuration ===
-            # user_agent='custom-ua',      # Set a custom User-Agent
+            user_agent='Mozilla/5.0 (Linux; Android 9; COL-AL10 Build/HUAWEICOL-AL10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/85.0.3527.52 MQQBrowser/6.2 TBS/044607 Mobile Safari/537.36',      # Set a custom User-Agent
         )
 
         print(f"""Session created successfully with Session ID: {session.id}.
