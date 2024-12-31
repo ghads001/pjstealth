@@ -26,7 +26,7 @@ def main():
             # solve_captcha=True,          # Enable automatic CAPTCHA solving
             # session_timeout=1800000,     # Session timeout in ms (default: 15 mins, max: 60 mins)
             # === Browser Configuration ===
-            user_agent=r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'     # Set a custom User-Agent
+            user_agent=r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',     # Set a custom User-Agent
         )
 
         print(f"""Session created successfully with Session ID: {session.id}.
