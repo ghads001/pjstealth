@@ -14,7 +14,7 @@ import { newInjectedContext } from 'fingerprint-injector';
         },
     );
   const page = await context.newPage();
-  await page.goto('https://www.ip77.net/');
+  await page.goto('https://browserscan.net/');
   await page.waitForTimeout(30000);
   console.log(await page.content());
   await browser.close();
