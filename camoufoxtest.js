@@ -14,7 +14,7 @@ import { newInjectedContext } from 'fingerprint-injector';
           
         },
     );
-  const page = await browser.newPage();
+  const page = await context.newPage();
   await page.goto('https://httpbin.co/anything');
   console.log(await page.content());
   await browser.close();
