@@ -10,8 +10,7 @@ import { newInjectedContext } from 'fingerprint-injector';
           fingerprintOptions: {
               devices: ['mobile'],
               operatingSystems: ['ios'],
-          },
-          
+          },          
         },
     );
   const page = await context.newPage();
