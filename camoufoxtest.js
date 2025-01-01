@@ -1,5 +1,5 @@
-const { chromium } = require('patchright');
-const { newInjectedContext } require('fingerprint-injector');
+import { chromium } from 'patchright';
+import { newInjectedContext } from 'fingerprint-injector';
 
 (async () => {
   const browser = await chromium.launch({ headless: false });
