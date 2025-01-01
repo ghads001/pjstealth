@@ -15,4 +15,4 @@ jobs:
     - name: Install Chromium-Driver for Patchright
       run: npx patchright install chromium
     - name: Run your tests
-      run: node camoufoxtest.js
+      run: xvfb-run node camoufoxtest.js
