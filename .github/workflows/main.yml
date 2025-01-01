@@ -8,8 +8,6 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
     - name: Install Patchright 
       run: npm i patchright
     - name: Install Chromium-Driver for Patchright
