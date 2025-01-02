@@ -21,5 +21,6 @@ async def main():
         await page.goto('https://httpbin.co/anything')
         await print(page.content())
         await browser.close()
+        await client.sessions.stop(session.id)
 
 asyncio.run(main())
