@@ -12,11 +12,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-    - name: Install hyperbrowser
-      run: pip install hyperbrowser
-    - name: Install Patchright
-      run: pip install patchright
-    - name: Install chromium
-      run: patchright install chromium
+    - name: Install requests
+      run: pip install requests
     - name: Run your tests
       run: python camoufoxtest.py
