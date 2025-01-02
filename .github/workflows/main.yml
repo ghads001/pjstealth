@@ -5,20 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        node-version: lts/*
-    - name: Install head-generator
-      run: npm i header-generator
-    - name: Install fingerprint-generator
-      run: npm i fingerprint-generator
-    - name: Install fingerprint-injector
-      run: npm i fingerprint-injector
-    - name: Install generative-bayesian-network
-      run: npm i generative-bayesian-network
-    - name: Install Patchright 
-      run: npm i patchright
-    - name: Install Chromium-Driver for Patchright
-      run: npx patchright install chromium
+        python-version: '3.13'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+    - name: Install hyperbrowser
+      run: pip install hyperbrowser
+    - name: Install Patchright
+      run: pip install patchright
+    - name: Install chromium
+      run: patchright install chromium
     - name: Run your tests
-      run: xvfb-run node camoufoxtest.js
+      run: python camoufoxtest.py
