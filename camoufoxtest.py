@@ -17,7 +17,8 @@ async def main():
             )
         )
         browser = p.chromium.connect(session.ws_endpoint)
-        page = await browser.new_page()
+        default_context = browser.contexts[0]
+        page = default_context.pages[0]
         await page.goto('https://httpbin.co/anything')
         await print(page.content())
         await browser.close()
