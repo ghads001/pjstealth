@@ -1,27 +1,37 @@
-import os
-import asyncio
-from patchright.async_api import async_playwright
-from hyperbrowser import AsyncHyperbrowser
-from hyperbrowser.models.session import CreateSessionParams, ScreenConfig
+import requests
+import urllib.parse
+import random
 
-client = AsyncHyperbrowser(api_key='hb_614c0f40c481f71e6be91423144e')
-async def main():
-    async with async_playwright() as p:
-        session = await client.sessions.create(
-            params=CreateSessionParams(
-                use_stealth=True,
-                operating_systems=["macos"],
-                device=["desktop"],
-                locales=["en"],
-                screen=ScreenConfig(width=1920, height=1080),
-            )
-        )
-        browser = p.chromium.connect(session.ws_endpoint)
-        default_context = browser.contexts[0]
-        page = default_context.pages[0]
-        await page.goto('https://httpbin.co/anything')
-        await print(page.content())
-        await browser.close()
-        await client.sessions.stop(session.id)
+token = "54e88bca11504c90b8a184e06c3d89ac7814f7e9a4d"
 
-asyncio.run(main())
+link = "https://httpbin.co/anything"
+
+targetUrl = urllib.parse.quote(link)
+
+super = "true"
+
+geoCode = "us"
+
+#regionalGeoCode = "europe"
+#asia 亚洲 europe 欧洲 africa 非洲  oceania 大洋洲 northamerica 北美 southamerica 南美洲  
+sessionId = str(random.randint(2000, 4000))
+
+timeout = "1200000"   # 5000 毫秒和 120000 毫秒
+
+device = "desktop"   # desktop 和 mobile 
+
+customWait = "35000"
+
+render = "true"
+
+height = "1280"
+width = "720"
+
+blockResources = "false"
+
+url = "http://api.scrape.do?token={}&url={}&super={}&regionalGeoCode={}&sessionId={}&timeout={}&device={}&customWait={}&render={}&blockResources={}&width={}&height={}".format(token, targetUrl, super, geoCode, sessionId, timeout, device, customWait, render, blockResources, width, height)
+
+
+response = requests.request("GET", url)
+
+print(response.text)
