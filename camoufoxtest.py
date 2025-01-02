@@ -28,10 +28,14 @@ height = "1280"
 width = "720"
 
 blockResources = "false"
+customHeaders = "true"
 
-url = "http://api.scrape.do?token={}&url={}&super={}&geoCode={}&sessionId={}&timeout={}&device={}&customWait={}&render={}&blockResources={}&width={}&height={}".format(token, targetUrl, super, geoCode, sessionId, timeout, device, customWait, render, blockResources, width, height)
+url = "http://api.scrape.do?token={}&url={}&super={}&geoCode={}&sessionId={}&timeout={}&device={}&customWait={}&render={}&blockResources={}&width={}&height={}&customHeaders={}".format(token, targetUrl, super, geoCode, sessionId, timeout, device, customWait, render, blockResources, width, height, customHeaders)
+payload = {}
+headers = {
+  'User-Agent': 'Mozilla/5.0 (Linux; Android 9; COL-AL10 Build/HUAWEICOL-AL10; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/85.0.3527.52 '
+}
 
-
-response = requests.request("GET", url)
+response = requests.request("GET", url, headers=headers, data=payload)
 
 print(response.text)
