@@ -1,21 +1,25 @@
-import { chromium } from 'patchright';
-import { newInjectedContext } from 'fingerprint-injector';
+import os
+import asyncio
+from patchright.async_api import async_playwright
+from hyperbrowser import AsyncHyperbrowser
+from hyperbrowser.models.session import CreateSessionParams, ScreenConfig
 
-(async () => {
-  const browser = await chromium.launch({ headless: false });
-  const context = await newInjectedContext(
-      browser,
-      {
-            // Constraints for the generated fingerprint (optional)
-          fingerprintOptions: {
-              devices: ['mobile'],
-              operatingSystems: ['ios'],
-          },          
-        },
-    );
-  const page = await context.newPage();
-  await page.goto('https://browserscan.net/');
-  await page.waitForTimeout(30000);
-  console.log(await page.content());
-  await browser.close();
-})();
+client = AsyncHyperbrowser(api_key='hb_614c0f40c481f71e6be91423144e')
+async def main():
+    async with async_playwright() as p:
+        session = await client.sessions.create(
+            params=CreateSessionParams(
+                use_stealth=True,
+                operating_systems=["macos"],
+                device=["desktop"],
+                locales=["en"],
+                screen=ScreenConfig(width=1920, height=1080),
+            )
+        )
+        browser = p.chromium.connect(session.ws_endpoint)
+        page = await browser.new_page()
+        await page.goto('https://httpbin.co/anything')
+        await print(page.content())
+        await browser.close()
+
+asyncio.run(main())
