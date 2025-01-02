@@ -29,7 +29,7 @@ width = "720"
 
 blockResources = "false"
 
-url = "http://api.scrape.do?token={}&url={}&super={}&regionalGeoCode={}&sessionId={}&timeout={}&device={}&customWait={}&render={}&blockResources={}&width={}&height={}".format(token, targetUrl, super, geoCode, sessionId, timeout, device, customWait, render, blockResources, width, height)
+url = "http://api.scrape.do?token={}&url={}&super={}&geoCode={}&sessionId={}&timeout={}&device={}&customWait={}&render={}&blockResources={}&width={}&height={}".format(token, targetUrl, super, geoCode, sessionId, timeout, device, customWait, render, blockResources, width, height)
 
 
 response = requests.request("GET", url)
