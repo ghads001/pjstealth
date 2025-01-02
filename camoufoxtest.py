@@ -16,7 +16,7 @@ geoCode = "us"
 #asia 亚洲 europe 欧洲 africa 非洲  oceania 大洋洲 northamerica 北美 southamerica 南美洲  
 sessionId = str(random.randint(2000, 4000))
 
-timeout = "1200000"   # 5000 毫秒和 120000 毫秒
+timeout = "120000"   # 5000 毫秒和 120000 毫秒
 
 device = "desktop"   # desktop 和 mobile 
 
