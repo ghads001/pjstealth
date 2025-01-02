@@ -10,7 +10,7 @@ targetUrl = urllib.parse.quote(link)
 
 super = "true"
 
-geoCode = "us"
+geoCode = "de"
 
 #regionalGeoCode = "europe"
 #asia 亚洲 europe 欧洲 africa 非洲  oceania 大洋洲 northamerica 北美 southamerica 南美洲  
@@ -18,7 +18,7 @@ sessionId = str(random.randint(2000, 4000))
 
 timeout = "120000"   # 5000 毫秒和 120000 毫秒
 
-device = "desktop"   # desktop 和 mobile 
+device = "mobile"   # desktop 和 mobile 
 
 customWait = "35000"
 
