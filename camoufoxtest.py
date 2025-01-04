@@ -7,3 +7,4 @@ with sync_playwright() as p:
     page.wait_for_timeout(1000)
     print(page.content())
     browser.close()
+
