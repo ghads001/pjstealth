@@ -8,4 +8,3 @@ with sync_playwright() as p:
     print(page.content())
     browser.close()
 
-
