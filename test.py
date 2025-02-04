@@ -9,8 +9,8 @@ co.set_argument('--accept-lang','de')
 co.set_argument('--no-sandbox')
 browser = Chromium(co)
 tab = browser.latest_tab
-tab.get('https://ip77.net/')
-browser.wait(30)
+tab.get('https://httpbin.co/anything')
+browser.wait(5)
 print(tab.html)
 browser.quit(del_data=True)
 
