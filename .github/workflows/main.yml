@@ -24,9 +24,10 @@ jobs:
       run: |
         curl https://github.com/adryfish/fingerprint-chromium/releases/download/131.0.6778.264/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz --output ./chrome/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz
       working-directory: ${{ github.workspace }}
-    - name: exp
-      run: |
-        tar xvJf ungoogled-chromium_131.0.6778.264-1_linux.tar.xz
-      working-directory: ./chrome
+    - name: Extract tgz
+      uses: ihiroky/extract-action@v1
+      with:
+        file_path: './chrome/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz'
+        extract_dir: './chrome'
     - name: run test
       run: xvfb-run python test.py
