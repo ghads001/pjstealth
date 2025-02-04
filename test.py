@@ -9,6 +9,7 @@ co.set_argument('--fingerprinting-canvas-measuretext-noise')
 co.set_argument('--fingerprinting-client-rects-noise')
 co.set_argument('--lang', 'zh')
 co.set_argument('--accept-lang', 'zh')
+co.set_argument('--no-sandbox')
 browser = Chromium(co)
 tab = browser.latest_tab
 tab.get('https://ip77.net/')
