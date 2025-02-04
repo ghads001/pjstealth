@@ -26,7 +26,7 @@ jobs:
       working-directory: ${{ github.workspace }}
     - name: exp
       run: |
-        tar jxvf ungoogled-chromium_131.0.6778.264-1_linux.tar.xz
+        tar xvJf ungoogled-chromium_131.0.6778.264-1_linux.tar.xz
       working-directory: ./chrome
     - name: run test
       run: xvfb-run python test.py
