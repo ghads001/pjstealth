@@ -22,7 +22,7 @@ jobs:
       working-directory: ${{ github.workspace }}
     - name: download chrome
       run: |
-        curl https://github.com/adryfish/fingerprint-chromium/releases/download/131.0.6778.264/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz --output ./chrome 
+        curl https://github.com/adryfish/fingerprint-chromium/releases/download/131.0.6778.264/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz --output ./chrome/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz
       working-directory: ${{ github.workspace }}
     - name: exp
       run: |
