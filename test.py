@@ -11,7 +11,7 @@ co.set_argument('--lang', 'zh')
 co.set_argument('--accept-lang', 'zh')
 browser = Chromium(co)
 tab = browser.latest_tab
-tab.get(https://ip77.net/)
+tab.get('https://ip77.net/')
 browser.wait(30)
 print(tab.html)
 browser.quit(del_data=True)
