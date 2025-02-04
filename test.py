@@ -1,6 +1,6 @@
 from patchright.sync_api import sync_playwright
 
-executable_path = r'./ungoogled-chromium_131.0.6778.264-1_linux/chrome'
+executable_path = r'./ungoogled-chromium_131.0.6778.264-1_linux'
 
 with sync_playwright() as p:
     browser = p.chromium.launch_persistent_context(
