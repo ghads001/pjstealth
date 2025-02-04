@@ -1,17 +1,27 @@
-from DrissionPage import Chromium, ChromiumOptions
-co = ChromiumOptions().set_browser_path(r'./chrome/ungoogled-chromium_130.0.6723.116-1_linux/chrome').set_local_port(9111).set_user_data_path(r'./test2')
-co.set_argument('--fingerprint','1002')
-co.set_argument('--fingerprint-platform','macos')
-co.set_argument('--fingerprinting-canvas-image-data-noise')
-co.set_argument('--fingerprinting-canvas-measuretext-noise')
-co.set_argument('--fingerprinting-client-rects-noise')
-co.set_argument('--lang','zh')
-co.set_argument('--accept-lang','zh')
-co.set_argument('--no-sandbox')
-browser = Chromium(co)
-tab = browser.latest_tab
-tab.get('https://httpbin.co/anything')
-browser.wait(5)
-print(tab.html)
-browser.quit(del_data=True)
+from patchright.sync_api import sync_playwright
+
+executable_path = r'./chrome/ungoogled-chromium_131.0.6778.264-1_linux/chrome'
+
+with sync_playwright() as p:
+    browser = p.chromium.launch_persistent_context(
+        user_data_dir="./test1",
+        executable_path=executable_path,
+        channel="chrome",
+        headless=False,
+        no_viewport=True,
+        args=['--fingerprint=1000',
+            '--fingerprint-platform=macos',
+            '--fingerprinting-canvas-image-data-noise',
+            '--fingerprinting-canvas-measuretext-noise',
+            '--fingerprinting-client-rects-noise',
+            '--lang=zh',
+            '--accept-lang=zh'],
+    )
+    page = browser.new_page()
+    page.goto('https://httpbin.co/anything')
+    page.wait_for_timeout(5000)
+    print(page.content())
+    browser.close()
+
+
 
