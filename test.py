@@ -15,7 +15,7 @@ with sync_playwright() as p:
             '--fingerprinting-canvas-measuretext-noise',
             '--fingerprinting-client-rects-noise',
             '--lang=zh',
-            '--accept-lang=zh'],
+            '--accept-lang=zh']
     )
     page = browser.new_page()
     page.goto('https://httpbin.co/anything')
