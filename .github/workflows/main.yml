@@ -13,21 +13,21 @@ jobs:
       run: |
         python -m pip install --upgrade pip
     - name: Install drissionpage
-      run: pip install DrissionPage
+      run: pip install patchright
     - name: upgrade
-      run: pip install DrissionPage --upgrade
+      run: patchright install chromium
     - name: creat dir
       run: |
         mkdir chrome
       working-directory: ${{ github.workspace }}
     - name: download chrome
       run: |
-        curl https://github.com/adryfish/fingerprint-chromium/releases/download/130.0.6723.116/ungoogled-chromium_130.0.6723.116-1_linux.tar.xz --output ./chrome/ungoogled-chromium_130.0.6723.116-1_linux.tar.xz
+        curl https://github.com/adryfish/fingerprint-chromium/releases/download/131.0.6778.264/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz --output ./chrome/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz
       working-directory: ${{ github.workspace }}
     - name: Extract tgz
       uses: ihiroky/extract-action@v1
       with:
-        file_path: './chrome/ungoogled-chromium_130.0.6723.116-1_linux.tar.xz'
+        file_path: './chrome/ungoogled-chromium_131.0.6778.264-1_linux.tar.xz'
         extract_dir: './chrome'
     - name: run test
       run: xvfb-run python test.py
