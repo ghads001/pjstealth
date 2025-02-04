@@ -14,6 +14,7 @@ with sync_playwright() as p:
             '--fingerprinting-canvas-image-data-noise',
             '--fingerprinting-canvas-measuretext-noise',
             '--fingerprinting-client-rects-noise',
+            '--no-sandbox',
             '--lang=zh',
             '--accept-lang=zh']
     )
